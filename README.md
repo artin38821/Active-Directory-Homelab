@@ -33,8 +33,8 @@ Deployment and documentation of a virtualized Active Directory environment on Wi
   * Executed custom clean disk installation to 50GB unallocated partition.
   #### Architecture & Configuration Verification
 
-![NAT Network Configuration](01-nat-network-config.png)
+![NAT Network Configuration]
 *Figure 1: Isolated NAT Network setup (`AD-LAB-NETWORK`) with hypervisor-level DHCP disabled.*
 
-![DC01 Network Adapter Setup](02-vm-network-adapter.png)
+![DC01 Network Adapter Setup]
 *Figure 2: Mapping DC01 network interface adapter to the custom NAT network.*
