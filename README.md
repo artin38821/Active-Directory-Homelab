@@ -16,3 +16,18 @@ Deployment and documentation of a virtualized Active Directory environment on Wi
 * **CPU:** 2 vCPUs
 * **RAM:** 4096 MB (4 GB)
 * **Disk:** 50 GB VDI
+---
+
+## 3. Deployment Log
+
+### Phase 1: Base Operating System & Network Setup
+* **Hypervisor Configuration:**
+  * Created isolated VirtualBox NAT Network (`AD-LAB-NETWORK` - `192.168.100.0/24`).
+  * Explicitly disabled hypervisor-level DHCP to prevent conflicts with future Active Directory DHCP services.
+* **VM Provisioning (`DC01`):**
+  * Allocated 2 vCPUs, 4GB RAM, and 50GB dynamically allocated VDI disk storage.
+  * Mapped primary network adapter to `AD-LAB-NETWORK`.
+* **OS Deployment:**
+  * Mounted `SERVER_EVAL_x64FRE_en-us` ISO.
+  * Selected **Windows Server 2022 Standard Evaluation (Desktop Experience)** for full GUI administrative access.
+  * Executed custom clean disk installation to 50GB unallocated partition.
