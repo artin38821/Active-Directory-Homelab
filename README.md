@@ -33,8 +33,8 @@ Deployment and documentation of a virtualized Active Directory environment on Wi
   * Executed custom clean disk installation to 50GB unallocated partition.
   #### Architecture & Configuration Verification
 
-[NAT Network Configuration]
-*Figure 1: Isolated NAT Network setup (`AD-LAB-NETWORK`) with hypervisor-level DHCP disabled.*
+### Phase 2: Host & Network Initialization
 
-[DC01 Network Adapter Setup]
-*Figure 2: Mapping DC01 network interface adapter to the custom NAT network.*
+* **Base OS Provisioning:** Windows Server 2022 Standard (Desktop Experience) successfully deployed and post-install boot loop resolved.
+* **Host Identification:** Hostname changed from default auto-generated name to `DC01`.
+* **Network Adapter Configuration:** Static IP address assigned (`192.168.100.10/24`) with loopback address (`127.0.0.1`) assigned as primary DNS in preparation for AD DS/DNS installation.
