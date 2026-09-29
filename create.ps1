@@ -1,0 +1,3 @@
+$p = ConvertTo-SecureString "P@ssword2026!" -AsPlainText -Force
+"SG_IT_Admins","SG_HR_Users","SG_Workstation_Users" | ForEach-Object { New-ADGroup -Name $_ -GroupScope Global -GroupCategory Security -Path "OU=Groups,OU=Corp_Production,DC=lab,DC=local" }
+"jdoe","jsmith","mross" | ForEach-Object { New-ADUser -SamAccountName $_ -UserPrincipalName "$_@lab.local" -Path "OU=Users,OU=Corp_Production,DC=lab,DC=local" -AccountPassword $p -Enabled $true }
