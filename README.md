@@ -31,26 +31,34 @@ Deployment and documentation of a virtualized Active Directory environment on Wi
   * Mounted `SERVER_EVAL_x64FRE_en-us` ISO.
   * Selected **Windows Server 2022 Standard Evaluation (Desktop Experience)** for full GUI administrative access.
   * Executed custom clean disk installation to 50GB unallocated partition.
-  #### Architecture & Configuration Verification
 
 ### Phase 2: Host & Network Initialization
-
 * **Base OS Provisioning:** Windows Server 2022 Standard (Desktop Experience) successfully deployed and post-install boot loop resolved.
 * **Host Identification:** Hostname changed from default auto-generated name to `DC01`.
 * **Network Adapter Configuration:** Static IP address assigned (`192.168.100.10/24`) with loopback address (`127.0.0.1`) assigned as primary DNS in preparation for AD DS/DNS installation.
 
 ### Phase 3: Active Directory Domain Services (AD DS) & Forest Promotion
-
 * **AD DS Role Installation:**
-* Added **Active Directory Domain Services** role and core management features (`Remote Server Administration Tools`) to `DC01`.
-* Configured installation via Server Manager wizard without post-install dependency errors.
-
+  * Added **Active Directory Domain Services** role and core management features (`Remote Server Administration Tools`) to `DC01`.
+  * Configured installation via Server Manager wizard without post-install dependency errors.
 * **Forest Promotion & Domain Initialization:**
-* Promoted `DC01` to the first Domain Controller in a new Active Directory forest (`lab.local`).
-* Set Forest and Domain Functional Levels to **Windows Server 2016** baseline.
-* Provisioned integrated **Domain Name System (DNS) Server** and **Global Catalog (GC)** roles on the host.
-
+  * Promoted `DC01` to the first Domain Controller in a new Active Directory forest (`lab.local`).
+  * Set Forest and Domain Functional Levels to **Windows Server 2016** baseline.
+  * Provisioned integrated **Domain Name System (DNS) Server** and **Global Catalog (GC)** roles on the host.
 * **DNS Delegation & Network Verification:**
-* Identified and validated expected DNS delegation warning (`A delegation for this DNS server cannot be created...`).
-* Confirmed standard behavior for an isolated root forest operating without an upstream public Internet DNS hierarchy.
-* Configured Directory Services Restore Mode (DSRM) administrator credentials for emergency recovery operations.
+  * Identified and validated expected DNS delegation warning (`A delegation for this DNS server cannot be created...`).
+  * Confirmed standard behavior for an isolated root forest operating without an upstream public Internet DNS hierarchy.
+  * Configured Directory Services Restore Mode (DSRM) administrator credentials for emergency recovery operations.
+
+### Phase 4: Helpdesk & Administrative Operations Log
+* **Organizational Unit (OU) & Security Group Structure:**
+  * Established a structured parent OU (`Corp_Production`) featuring nested child OUs for `Users`, `Groups`, and `Workstations`.
+  * Created baseline security groups (`SG_IT_Admins`, `SG_HR_Users`, `SG_Workstation_Users`) to enforce access control and role-based permissions.
+  * **Automation & Scripting Note:** Utilized AI assistance to streamline the creation and execution of PowerShell scripts for bulk user and group provisioning.
+* **User Lifecycle & Account Provisioning:**
+  * Handcrafted user objects (such as `Karen Waters` / `kwaters` and `Sarah Connor` / `sconnor`) directly via Active Directory Users and Computers (ADUC) to simulate real-world tier-1 helpdesk provisioning tickets.
+  * Enforced temporary credentials with strict compliance rules, including the **"User must change password at next logon"** parameter.
+  * Performed lock-out management, password resets, and user state tracking through the ADUC console.
+* **Asset Pre-Staging & Governance:**
+  * Pre-staged machine entries (`WS-CORP-01`, `WS-CORP-02`) inside the `Workstations` OU to prepare systems for secure domain joining.
+  * Enforced clear operational boundaries ensuring Helpdesk personnel handle user lifecycle management and day-to-day troubleshooting, while GPO creation and domain-wide policy enforcement are strictly isolated to System Administrator roles.
