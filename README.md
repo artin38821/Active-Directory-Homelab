@@ -31,3 +31,10 @@ Deployment and documentation of a virtualized Active Directory environment on Wi
   * Mounted `SERVER_EVAL_x64FRE_en-us` ISO.
   * Selected **Windows Server 2022 Standard Evaluation (Desktop Experience)** for full GUI administrative access.
   * Executed custom clean disk installation to 50GB unallocated partition.
+  #### Architecture & Configuration Verification
+
+![NAT Network Configuration](01-nat-network-config.png)
+*Figure 1: Isolated NAT Network setup (`AD-LAB-NETWORK`) with hypervisor-level DHCP disabled.*
+
+![DC01 Network Adapter Setup](02-vm-network-adapter.png)
+*Figure 2: Mapping DC01 network interface adapter to the custom NAT network.*
